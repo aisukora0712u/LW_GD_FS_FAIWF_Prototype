@@ -1,0 +1,13 @@
+{
+  "name": "Game.Tests.PlayMode",
+  "rootNamespace": "Game.Tests.PlayMode",
+  "references": [
+    "Game.Core",
+    "Game.Foundation",
+    "Game.Gameplay",
+    "Game.Infrastructure",
+    "Game.Presentation"
+  ],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "autoReferenced": false
+}

@@ -1,0 +1,31 @@
+* text=auto eol=lf
+*.cs text diff=csharp
+*.shader text
+*.compute text
+*.cginc text
+*.hlsl text
+*.json text
+*.yml text
+*.yaml text
+*.md text
+*.unity text merge=unityyamlmerge eol=lf
+*.prefab text merge=unityyamlmerge eol=lf
+*.asset text merge=unityyamlmerge eol=lf
+*.mat text merge=unityyamlmerge eol=lf
+*.anim text merge=unityyamlmerge eol=lf
+*.controller text merge=unityyamlmerge eol=lf
+
+# Source and runtime binary assets
+*.fbx filter=lfs diff=lfs merge=lfs -text lockable
+*.blend filter=lfs diff=lfs merge=lfs -text lockable
+*.ma filter=lfs diff=lfs merge=lfs -text lockable
+*.mb filter=lfs diff=lfs merge=lfs -text lockable
+*.psd filter=lfs diff=lfs merge=lfs -text lockable
+*.kra filter=lfs diff=lfs merge=lfs -text lockable
+*.tif filter=lfs diff=lfs merge=lfs -text lockable
+*.tiff filter=lfs diff=lfs merge=lfs -text lockable
+*.exr filter=lfs diff=lfs merge=lfs -text lockable
+*.wav filter=lfs diff=lfs merge=lfs -text lockable
+*.flac filter=lfs diff=lfs merge=lfs -text lockable
+*.mp4 filter=lfs diff=lfs merge=lfs -text lockable
+*.mov filter=lfs diff=lfs merge=lfs -text lockable

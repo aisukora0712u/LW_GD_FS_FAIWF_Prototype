@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/content-candidate-provenance-v1.schema.json",
+  "title": "AI content candidate provenance v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "candidateId", "baseContentVersion", "targetContentVersion", "generator", "model", "generatedAtUtc", "promptDigest", "source", "license", "owner"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "candidateId": { "type": "string", "pattern": "^[a-z][a-z0-9_-]*(\\.[a-z][a-z0-9_-]*)+$" },
+    "baseContentVersion": { "type": "string", "minLength": 1 },
+    "targetContentVersion": { "type": "string", "minLength": 1 },
+    "generator": { "type": "string", "minLength": 1 },
+    "model": { "type": "string", "minLength": 1 },
+    "generatedAtUtc": { "type": "string", "format": "date-time" },
+    "promptDigest": { "type": "string", "pattern": "^[0-9a-fA-F]{64}$" },
+    "source": { "type": "string", "minLength": 1 },
+    "license": { "type": "string", "minLength": 1 },
+    "owner": { "type": "string", "minLength": 1 }
+  }
+}

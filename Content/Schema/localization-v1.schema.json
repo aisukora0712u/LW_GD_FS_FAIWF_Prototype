@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/localization-v1.schema.json",
+  "title": "Localization catalog v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "localizationVersion", "locale", "status", "owner", "source", "entries"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "localizationVersion": { "type": "string", "minLength": 1 },
+    "locale": { "type": "string", "minLength": 2 },
+    "status": { "enum": ["draft", "review", "approved", "deprecated"] },
+    "owner": { "type": "string", "minLength": 1 },
+    "source": { "type": "string", "minLength": 1 },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "value"],
+        "properties": {
+          "key": {
+            "type": "string",
+            "maxLength": 96,
+            "pattern": "^[a-z][a-z0-9_-]*(\\.[a-z][a-z0-9_-]*)+$"
+          },
+          "value": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

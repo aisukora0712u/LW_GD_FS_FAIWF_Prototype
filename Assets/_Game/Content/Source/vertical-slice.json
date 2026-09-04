@@ -1,0 +1,397 @@
+{
+  "schemaVersion": 7,
+  "contentVersion": "vertical-slice.7",
+  "status": "approved",
+  "playerMaximumHealth": 40,
+  "rewardChoiceCount": 3,
+  "startNodeId": "story.crossroads",
+  "startRouteNodeId": "route.prologue",
+  "initialDeck": [
+    "card.strike",
+    "card.strike",
+    "card.strike",
+    "card.strike",
+    "card.defend",
+    "card.defend",
+    "card.defend",
+    "card.defend",
+    "card.insight",
+    "card.expose"
+  ],
+  "rewardPool": [
+    "card.heavy_strike",
+    "card.quick_guard",
+    "card.insight",
+    "card.expose",
+    "card.focus",
+    "card.dampen"
+  ],
+  "initialRelics": [],
+  "statuses": [
+    {
+      "id": "status.strength",
+      "kind": "Strength",
+      "nameKey": "loc.status.strength.name",
+      "descriptionKey": "loc.status.strength.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["combat", "buff"] }
+    },
+    {
+      "id": "status.weak",
+      "kind": "Weak",
+      "nameKey": "loc.status.weak.name",
+      "descriptionKey": "loc.status.weak.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["combat", "debuff"] }
+    },
+    {
+      "id": "status.vulnerable",
+      "kind": "Vulnerable",
+      "nameKey": "loc.status.vulnerable.name",
+      "descriptionKey": "loc.status.vulnerable.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["combat", "debuff"] }
+    }
+  ],
+  "relics": [
+    {
+      "id": "relic.ember_quill",
+      "trigger": "CombatStart",
+      "nameKey": "loc.relic.ember_quill.name",
+      "descriptionKey": "loc.relic.ember_quill.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["vertical_slice", "combat_start", "relic"] },
+      "effects": [
+        { "kind": "GainBlock", "amount": 2 },
+        { "kind": "ApplyStatus", "amount": 1, "statusId": "status.strength" }
+      ]
+    }
+  ],
+  "shops": [
+    {
+      "id": "shop.ink_market",
+      "nameKey": "loc.shop.ink_market.name",
+      "descriptionKey": "loc.shop.ink_market.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["vertical_slice", "shop", "act1"] },
+      "inventoryPool": ["card.heavy_strike", "card.quick_guard", "card.insight", "card.expose", "card.focus", "card.dampen"],
+      "cardPrice": 12,
+      "removalPrice": 8,
+      "offerCount": 3
+    }
+  ],
+  "cards": [
+    {
+      "id": "card.strike",
+      "nameKey": "loc.card.strike.name",
+      "descriptionKey": "loc.card.strike.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["starter", "attack"] },
+      "upgradeToId": "card.strike_plus",
+      "cost": 1,
+      "effects": [
+        { "kind": "Damage", "target": "SingleEnemy", "amount": 8 }
+      ]
+    },
+    {
+      "id": "card.defend",
+      "nameKey": "loc.card.defend.name",
+      "descriptionKey": "loc.card.defend.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["starter", "skill"] },
+      "upgradeToId": "card.defend_plus",
+      "cost": 1,
+      "effects": [
+        { "kind": "Block", "target": "Self", "amount": 6 }
+      ]
+    },
+    {
+      "id": "card.insight",
+      "nameKey": "loc.card.insight.name",
+      "descriptionKey": "loc.card.insight.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["draw", "skill"] },
+      "upgradeToId": "card.insight_plus",
+      "cost": 0,
+      "exhausts": true,
+      "effects": [
+        { "kind": "Draw", "target": "Self", "amount": 1 }
+      ]
+    },
+    {
+      "id": "card.heavy_strike",
+      "nameKey": "loc.card.heavy_strike.name",
+      "descriptionKey": "loc.card.heavy_strike.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["reward", "attack"] },
+      "cost": 2,
+      "effects": [
+        { "kind": "Damage", "target": "SingleEnemy", "amount": 14 }
+      ]
+    },
+    {
+      "id": "card.quick_guard",
+      "nameKey": "loc.card.quick_guard.name",
+      "descriptionKey": "loc.card.quick_guard.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["reward", "skill"] },
+      "cost": 1,
+      "effects": [
+        { "kind": "Block", "target": "Self", "amount": 4 },
+        { "kind": "Draw", "target": "Self", "amount": 1 }
+      ]
+    },
+    {
+      "id": "card.strike_plus",
+      "nameKey": "loc.card.strike_plus.name",
+      "descriptionKey": "loc.card.strike_plus.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["upgrade", "attack"] },
+      "cost": 1,
+      "effects": [
+        { "kind": "Damage", "target": "SingleEnemy", "amount": 11 }
+      ]
+    },
+    {
+      "id": "card.defend_plus",
+      "nameKey": "loc.card.defend_plus.name",
+      "descriptionKey": "loc.card.defend_plus.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["upgrade", "skill"] },
+      "cost": 1,
+      "effects": [
+        { "kind": "Block", "target": "Self", "amount": 9 }
+      ]
+    },
+    {
+      "id": "card.insight_plus",
+      "nameKey": "loc.card.insight_plus.name",
+      "descriptionKey": "loc.card.insight_plus.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["upgrade", "draw", "skill"] },
+      "cost": 0,
+      "exhausts": true,
+      "effects": [
+        { "kind": "Draw", "target": "Self", "amount": 2 }
+      ]
+    },
+    {
+      "id": "card.expose",
+      "nameKey": "loc.card.expose.name",
+      "descriptionKey": "loc.card.expose.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["reward", "attack", "status"] },
+      "cost": 1,
+      "effects": [
+        { "kind": "Damage", "target": "SingleEnemy", "amount": 4 },
+        { "kind": "ApplyStatus", "target": "SingleEnemy", "amount": 2, "statusId": "status.vulnerable" }
+      ]
+    },
+    {
+      "id": "card.focus",
+      "nameKey": "loc.card.focus.name",
+      "descriptionKey": "loc.card.focus.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["reward", "skill", "status"] },
+      "cost": 1,
+      "effects": [
+        { "kind": "Block", "target": "Self", "amount": 4 },
+        { "kind": "ApplyStatus", "target": "Self", "amount": 1, "statusId": "status.strength" }
+      ]
+    },
+    {
+      "id": "card.dampen",
+      "nameKey": "loc.card.dampen.name",
+      "descriptionKey": "loc.card.dampen.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["reward", "skill", "status"] },
+      "cost": 1,
+      "effects": [
+        { "kind": "ApplyStatus", "target": "SingleEnemy", "amount": 2, "statusId": "status.weak" }
+      ]
+    }
+  ],
+  "enemies": [
+    {
+      "id": "enemy.ink_wisp",
+      "nameKey": "loc.enemy.ink_wisp.name",
+      "descriptionKey": "loc.enemy.ink_wisp.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["vertical_slice", "normal"] },
+      "maximumHealth": 24,
+      "intents": [
+        { "id": "intent.wisp_scratch", "effects": [{ "kind": "Attack", "target": "Player", "amount": 4 }] },
+        { "id": "intent.wisp_haze", "effects": [{ "kind": "ApplyStatus", "target": "Player", "amount": 1, "statusId": "status.weak" }] }
+      ]
+    },
+    {
+      "id": "enemy.bronze_sentry",
+      "nameKey": "loc.enemy.bronze_sentry.name",
+      "descriptionKey": "loc.enemy.bronze_sentry.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["vertical_slice", "normal"] },
+      "maximumHealth": 30,
+      "intents": [
+        { "id": "intent.sentry_brace", "effects": [{ "kind": "GainBlock", "target": "Self", "amount": 6 }] },
+        { "id": "intent.sentry_bash", "effects": [{ "kind": "Attack", "target": "Player", "amount": 8 }] }
+      ]
+    },
+    {
+      "id": "enemy.archive_warden",
+      "nameKey": "loc.enemy.archive_warden.name",
+      "descriptionKey": "loc.enemy.archive_warden.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["vertical_slice", "boss"] },
+      "maximumHealth": 100,
+      "intents": [
+        { "id": "intent.warden_seal", "effects": [
+          { "kind": "ApplyStatus", "target": "Player", "amount": 2, "statusId": "status.vulnerable" },
+          { "kind": "Attack", "target": "Player", "amount": 10 }
+        ] },
+        { "id": "intent.warden_fortify", "effects": [{ "kind": "GainBlock", "target": "Self", "amount": 8 }] },
+        { "id": "intent.warden_strike", "effects": [{ "kind": "Attack", "target": "Player", "amount": 16 }] }
+      ]
+    }
+  ],
+  "encounters": [
+    {
+      "id": "encounter.first_wisp",
+      "nameKey": "loc.encounter.first_wisp.name",
+      "descriptionKey": "loc.encounter.first_wisp.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["vertical_slice", "act1"] },
+      "enemyIds": ["enemy.ink_wisp"]
+    },
+    {
+      "id": "encounter.bronze_sentry",
+      "nameKey": "loc.encounter.bronze_sentry.name",
+      "descriptionKey": "loc.encounter.bronze_sentry.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["vertical_slice", "act1"] },
+      "enemyIds": ["enemy.bronze_sentry"]
+    },
+    {
+      "id": "encounter.archive_warden",
+      "nameKey": "loc.encounter.archive_warden.name",
+      "descriptionKey": "loc.encounter.archive_warden.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["vertical_slice", "boss"] },
+      "enemyIds": ["enemy.archive_warden"]
+    }
+  ],
+  "routeNodes": [
+    {
+      "id": "route.prologue",
+      "kind": "Story",
+      "payloadId": "story.crossroads",
+      "nameKey": "loc.route.prologue.name",
+      "descriptionKey": "loc.route.prologue.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["vertical_slice", "story"] },
+      "nextNodeIds": ["route.wisp", "route.sentry"]
+    },
+    {
+      "id": "route.wisp",
+      "kind": "Combat",
+      "payloadId": "encounter.first_wisp",
+      "nameKey": "loc.route.wisp.name",
+      "descriptionKey": "loc.route.wisp.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["vertical_slice", "combat"] },
+      "nextNodeIds": ["route.interlude"]
+    },
+    {
+      "id": "route.sentry",
+      "kind": "Combat",
+      "payloadId": "encounter.bronze_sentry",
+      "nameKey": "loc.route.sentry.name",
+      "descriptionKey": "loc.route.sentry.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["vertical_slice", "combat"] },
+      "nextNodeIds": ["route.interlude"]
+    },
+    {
+      "id": "route.interlude",
+      "kind": "Story",
+      "payloadId": "story.interlude",
+      "nameKey": "loc.route.interlude.name",
+      "descriptionKey": "loc.route.interlude.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["vertical_slice", "story"] },
+      "nextNodeIds": ["route.rest"]
+    },
+    {
+      "id": "route.rest",
+      "kind": "Rest",
+      "nameKey": "loc.route.rest.name",
+      "descriptionKey": "loc.route.rest.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["vertical_slice", "upgrade"] },
+      "nextNodeIds": ["route.shop"]
+    },
+    {
+      "id": "route.shop",
+      "kind": "Shop",
+      "payloadId": "shop.ink_market",
+      "nameKey": "loc.route.shop.name",
+      "descriptionKey": "loc.route.shop.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["vertical_slice", "shop"] },
+      "nextNodeIds": ["route.warden"]
+    },
+    {
+      "id": "route.warden",
+      "kind": "Boss",
+      "payloadId": "encounter.archive_warden",
+      "nameKey": "loc.route.warden.name",
+      "descriptionKey": "loc.route.warden.description",
+      "metadata": { "owner": "design", "source": "original", "tags": ["vertical_slice", "boss"] },
+      "isFinal": true
+    }
+  ],
+  "storyNodes": [
+    {
+      "id": "story.crossroads",
+      "speakerKey": "loc.speaker.guide",
+      "textKey": "loc.story.crossroads",
+      "metadata": { "owner": "narrative", "source": "original", "tags": ["vertical_slice", "choice"] },
+      "onEnter": [
+        {
+          "kind": "SetVariable",
+          "key": "variable.courage",
+          "value": { "kind": "Integer", "integer": 0 }
+        },
+        {
+          "kind": "ChangeResource",
+          "payload": "resource.gold",
+          "amount": 10
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice.face_wisp",
+          "textKey": "loc.choice.face_wisp",
+          "nextNodeId": "story.wisp_battle",
+          "commands": [
+            { "kind": "AddInteger", "key": "variable.courage", "amount": 1 }
+          ]
+        },
+        {
+          "id": "choice.walk_away",
+          "textKey": "loc.choice.walk_away",
+          "nextNodeId": "story.peaceful_end"
+        }
+      ]
+    },
+    {
+      "id": "story.wisp_battle",
+      "speakerKey": "loc.speaker.narrator",
+      "textKey": "loc.story.wisp_battle",
+      "metadata": { "owner": "narrative", "source": "original", "tags": ["vertical_slice", "combat"] },
+      "isTerminal": true
+    },
+    {
+      "id": "story.peaceful_end",
+      "speakerKey": "loc.speaker.narrator",
+      "textKey": "loc.story.peaceful_end",
+      "metadata": { "owner": "narrative", "source": "original", "tags": ["vertical_slice", "ending"] },
+      "isTerminal": true
+    },
+    {
+      "id": "story.interlude",
+      "speakerKey": "loc.speaker.guide",
+      "textKey": "loc.story.interlude",
+      "metadata": { "owner": "narrative", "source": "original", "tags": ["vertical_slice", "choice"] },
+      "choices": [
+        {
+          "id": "choice.enter_archive",
+          "textKey": "loc.choice.enter_archive",
+          "nextNodeId": "story.warden_gate",
+          "commands": [
+            { "kind": "ChangeResource", "payload": "resource.gold", "amount": 5 },
+            { "kind": "GrantRelic", "payload": "relic.ember_quill" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "story.warden_gate",
+      "speakerKey": "loc.speaker.narrator",
+      "textKey": "loc.story.warden_gate",
+      "metadata": { "owner": "narrative", "source": "original", "tags": ["vertical_slice", "boss"] },
+      "isTerminal": true
+    }
+  ]
+}

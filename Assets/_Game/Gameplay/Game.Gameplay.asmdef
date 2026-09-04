@@ -1,0 +1,6 @@
+{
+  "name": "Game.Gameplay",
+  "rootNamespace": "Game.Gameplay",
+  "references": ["Game.Core", "Game.Foundation"],
+  "autoReferenced": true
+}

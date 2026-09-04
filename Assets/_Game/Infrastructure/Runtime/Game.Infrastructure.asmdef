@@ -1,0 +1,12 @@
+{
+  "name": "Game.Infrastructure",
+  "rootNamespace": "Game.Infrastructure",
+  "references": [
+    "Game.Core",
+    "Game.Foundation",
+    "Unity.Addressables",
+    "Unity.ResourceManager",
+    "Unity.InputSystem"
+  ],
+  "autoReferenced": true
+}

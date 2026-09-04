@@ -1,0 +1,43 @@
+name: Promote Immutable Release to Steam
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing immutable release tag, for example v1.0.0
+        required: true
+        type: string
+      branch:
+        description: Steam branch to promote
+        required: true
+        default: internal
+        type: choice
+        options: [internal, external, default]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    environment: steam-${{ inputs.branch }}
+    runs-on: [self-hosted, Windows, SteamCMD]
+    timeout-minutes: 60
+    env:
+      GH_TOKEN: ${{ github.token }}
+      STEAMCMD_PATH: ${{ vars.STEAMCMD_PATH }}
+      STEAM_APP_ID: ${{ vars.STEAM_APP_ID }}
+      STEAM_DEPOT_ID: ${{ vars.STEAM_DEPOT_ID }}
+      STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download the already-verified release
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path Artifacts,BuildOutput/Steam | Out-Null
+          gh release download "${{ inputs.tag }}" --pattern "game-windows-${{ inputs.tag }}.zip" --dir Artifacts
+          Expand-Archive -LiteralPath "Artifacts/game-windows-${{ inputs.tag }}.zip" -DestinationPath BuildOutput/Steam -Force
+
+      - name: Upload exact artifact to Steam
+        shell: pwsh
+        run: ./Tools/Publish-Steam.ps1 -ContentRoot BuildOutput/Steam -Description "${{ inputs.tag }} / ${{ github.sha }}" -Branch "${{ inputs.branch }}"

@@ -1,0 +1,61 @@
+name: AI production task
+description: Scoped cross-discipline production work with human approval and reproducible evidence
+title: "production: "
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome and scope
+      description: State the deliverable, its value, explicit non-goals, and allowed files or systems. One independently verifiable problem per task.
+    validations:
+      required: true
+  - type: dropdown
+    id: discipline
+    attributes:
+      label: Primary discipline
+      options:
+        - Design and balance
+        - Narrative and localization
+        - Art and animation
+        - Audio
+        - Engineering and tools
+        - QA and performance
+        - Build and release
+    validations:
+      required: true
+  - type: textarea
+    id: inputs
+    attributes:
+      label: Authoritative inputs and rights
+      description: Link source versions, stable IDs, RFC/ADR, references and licenses. Identify missing inputs; never include credentials or personal data.
+    validations:
+      required: true
+  - type: textarea
+    id: approval
+    attributes:
+      label: Owner and human approval boundary
+      description: Name the accountable human and independent reviewer. State which numerical, narrative, visual, license or release decisions need approval. Pending is not approved; AI must not self-approve.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance and evidence map
+      description: Give each criterion an ID, observable result, exact verification command or manual protocol, and expected evidence artifact. Include failure cases and runtime integration.
+      placeholder: "AC-01 | expected behavior | command/protocol | evidence path | reviewer"
+    validations:
+      required: true
+  - type: textarea
+    id: handoff
+    attributes:
+      label: Candidate and downstream handoff
+      description: Specify output format, isolated candidate location, provenance record, consumer, import/preview step and rejection route. Structured runtime content must use the candidate review and promotion flow.
+    validations:
+      required: true
+  - type: textarea
+    id: risk
+    attributes:
+      label: Dependencies, budgets and rollback
+      description: State save/localization/platform/performance impact, approved budgets or pending decisions, rollback targets and recovery verification. External publication requires explicit authorization.
+    validations:
+      required: true

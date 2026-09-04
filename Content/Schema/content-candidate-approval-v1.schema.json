@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/content-candidate-approval-v1.schema.json",
+  "title": "Human content candidate approval v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "candidateId", "sourceDigest", "decision", "reviewer", "approvedAtUtc", "notes"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "candidateId": { "type": "string", "minLength": 1 },
+    "sourceDigest": { "type": "string", "pattern": "^[0-9a-fA-F]{64}$" },
+    "decision": { "const": "approved" },
+    "reviewer": { "type": "string", "minLength": 1 },
+    "approvedAtUtc": { "type": "string", "format": "date-time" },
+    "notes": { "type": "string" }
+  }
+}

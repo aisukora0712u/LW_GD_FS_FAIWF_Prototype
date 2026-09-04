@@ -1,0 +1,51 @@
+name: Nightly Development Build
+
+on:
+  schedule:
+    - cron: "0 19 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: nightly-windows
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  nightly:
+    runs-on: [self-hosted, Windows, Unity]
+    timeout-minutes: 120
+    env:
+      UNITY_EDITOR_PATH: ${{ vars.UNITY_EDITOR_PATH }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Canonical workflow gates
+        shell: pwsh
+        run: ./Tools/Workflow.ps1 check
+
+      - name: Build Windows development player
+        shell: pwsh
+        run: ./Tools/Build-Windows.ps1 -Configuration Development -Version 0.1.0 -BuildNumber $env:GITHUB_RUN_NUMBER -Channel nightly -Commit $env:GITHUB_SHA -OutputPath BuildOutput/Nightly/Game.exe
+
+      - name: Upload playable build
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-windows-${{ github.run_number }}
+          path: BuildOutput/Nightly/
+          retention-days: 30
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-diagnostics-${{ github.run_number }}
+          path: |
+            Logs/
+            TestResults/
+            Artifacts/balance-report.json
+          retention-days: 30

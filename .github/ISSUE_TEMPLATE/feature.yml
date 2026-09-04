@@ -1,0 +1,31 @@
+name: Feature
+description: A player-facing feature ready for implementation
+title: "feat: "
+labels: [feature]
+body:
+  - type: textarea
+    id: value
+    attributes:
+      label: Player value
+      description: What changes for the player and why it matters?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Use observable Given/When/Then outcomes.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and exclusions
+    validations:
+      required: true
+  - type: textarea
+    id: quality
+    attributes:
+      label: Test, performance and compatibility plan
+    validations:
+      required: true

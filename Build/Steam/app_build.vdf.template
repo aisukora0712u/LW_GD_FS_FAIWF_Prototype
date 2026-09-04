@@ -1,0 +1,21 @@
+"appbuild"
+{
+    "appid" "__APP_ID__"
+    "desc" "__DESCRIPTION__"
+    "buildoutput" "BuildOutput/SteamLogs"
+    "contentroot" "__CONTENT_ROOT__"
+    "setlive" "__BRANCH__"
+    "preview" "0"
+    "depots"
+    {
+        "__DEPOT_ID__"
+        {
+            "FileMapping"
+            {
+                "LocalPath" "*"
+                "DepotPath" "."
+                "recursive" "1"
+            }
+        }
+    }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Game.Foundation",
+  "rootNamespace": "Game.Foundation",
+  "references": [
+    "Game.Core",
+    "Unity.Addressables",
+    "Unity.InputSystem"
+  ],
+  "autoReferenced": true
+}

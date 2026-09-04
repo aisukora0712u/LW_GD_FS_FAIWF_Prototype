@@ -1,0 +1,11 @@
+# Initial repository owner. Replace path-specific entries with team handles after
+# a GitHub organization and its review teams have been created.
+* @aisukora0712u
+/Assets/_Game/Core/ @aisukora0712u
+/Assets/_Game/Foundation/ @aisukora0712u
+/Assets/_Game/Infrastructure/ @aisukora0712u
+/Assets/_Game/Editor/ @aisukora0712u
+/Packages/ @aisukora0712u
+/.github/workflows/ @aisukora0712u
+/Build/ @aisukora0712u
+/Tools/ @aisukora0712u

@@ -1,0 +1,65 @@
+name: Immutable Windows Release
+
+on:
+  push:
+    tags: ["v*.*.*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-verify:
+    runs-on: [self-hosted, Windows, Unity]
+    timeout-minutes: 180
+    env:
+      UNITY_EDITOR_PATH: ${{ vars.UNITY_EDITOR_PATH }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Resolve release version
+        id: version
+        shell: pwsh
+        run: |
+          $version = "${{ github.ref_name }}".TrimStart('v')
+          "value=$version" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+      - name: Verify source and tests
+        shell: pwsh
+        run: ./Tools/Workflow.ps1 check
+
+      - name: Build release once
+        shell: pwsh
+        run: ./Tools/Build-Windows.ps1 -Configuration Release -Version "${{ steps.version.outputs.value }}" -BuildNumber $env:GITHUB_RUN_NUMBER -Channel steam -Commit $env:GITHUB_SHA -OutputPath BuildOutput/Release/Game.exe
+
+      - name: Generate provenance manifest
+        shell: pwsh
+        run: ./Tools/New-ReleaseManifest.ps1 -BuildDirectory BuildOutput/Release -Version "${{ steps.version.outputs.value }}" -BuildNumber $env:GITHUB_RUN_NUMBER -Commit $env:GITHUB_SHA
+
+      - name: Package immutable artifact
+        shell: pwsh
+        run: Compress-Archive -Path BuildOutput/Release/* -DestinationPath "Artifacts/game-windows-${{ github.ref_name }}.zip" -CompressionLevel Optimal
+
+      - name: Upload verification artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ github.ref_name }}
+          path: |
+            Artifacts/
+            TestResults/
+            Logs/
+          retention-days: 90
+
+      - name: Create permanent draft GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: |
+          $tag = "${{ github.ref_name }}"
+          gh release view $tag 2>$null
+          if ($LASTEXITCODE -ne 0) {
+            gh release create $tag --draft --verify-tag --title $tag --generate-notes
+          }
+          gh release upload $tag "Artifacts/game-windows-$tag.zip" Artifacts/release-manifest.json --clobber

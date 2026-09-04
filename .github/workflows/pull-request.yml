@@ -1,0 +1,56 @@
+name: Pull Request Quality Gates
+
+on:
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enforce Conventional Commit PR title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        shell: bash
+        run: |
+          if [[ ! "$PR_TITLE" =~ ^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9._-]+\))?!?:\ .+ ]]; then
+            echo "PR title must follow Conventional Commits."
+            exit 1
+          fi
+
+  unity-quality-gates:
+    runs-on: [self-hosted, Windows, Unity]
+    timeout-minutes: 90
+    env:
+      UNITY_EDITOR_PATH: ${{ vars.UNITY_EDITOR_PATH }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Canonical workflow gates
+        shell: pwsh
+        run: ./Tools/Workflow.ps1 check
+
+      - name: Windows smoke build
+        shell: pwsh
+        run: ./Tools/Build-Windows.ps1 -Configuration Development -Version 0.1.0 -BuildNumber $env:GITHUB_RUN_NUMBER -Channel pr -Commit $env:GITHUB_SHA -OutputPath BuildOutput/PR/Game.exe
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-${{ github.event.pull_request.number }}-diagnostics
+          path: |
+            Logs/
+            TestResults/
+            Artifacts/balance-report.json
+          retention-days: 14
