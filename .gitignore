@@ -28,6 +28,11 @@ Artifacts/
 BuildOutput/
 Assets/Resources/Generated/
 Assets/Resources/Generated.meta
+# Addressables build products; keep authored settings and groups tracked.
+/ServerData/
+/Assets/**/AddressableAssetsData/link.xml*
+/Assets/**/AddressableAssetsData/*/*.bin*
+/Assets/**/Addressables_Temp/
 steam_appid.txt
 
 # Crash dumps and secrets
