@@ -1,0 +1,151 @@
+{
+  "task": "workflow-local-analysis",
+  "baseline": "2b20b25",
+  "analysisDate": "2026-09-15",
+  "workflow": {
+    "command": "pwsh -NoProfile -File Tools/Workflow.ps1 check",
+    "exitCode": 0,
+    "completedAt": "2026-09-15T13:13:43+09:00",
+    "editMode": {
+      "path": "TestResults/EditMode-results.xml",
+      "sha256": "1b392952e01991b6bb385ce4ec4c90308d272a11177755ed0dc9dbb0436a8c5a",
+      "passed": 71,
+      "total": 71,
+      "endTimeUtc": "2026-09-15 04:13:03Z"
+    },
+    "playMode": {
+      "path": "TestResults/PlayMode-results.xml",
+      "sha256": "956b0fc12edeb3e5e0ec6933a76e86f07e66f8e535dd7005f8c444aaaf249e9d",
+      "passed": 1,
+      "total": 1,
+      "endTimeUtc": "2026-09-15 04:13:43Z"
+    },
+    "taskEvidence": "1 valid fixture + 9 rejection cases passed",
+    "candidateFidelity": "synthetic preservation + 10 rejection cases + 3 read-only comparisons passed",
+    "projectValidation": "passed",
+    "balance": {
+      "path": "Artifacts/balance-report.json",
+      "sha256": "79745da30aac6a333bdc275ced128fd7a8bc64e51acc8a015f862e294916d6c6",
+      "contentVersion": "vertical-slice.7",
+      "policyVersion": "greedy-v2-shop",
+      "samples": 200,
+      "startSeed": "1",
+      "won": 180,
+      "lost": 20,
+      "stalled": 0,
+      "gatePassed": true
+    }
+  },
+  "web": {
+    "javascriptSyntax": "passed",
+    "localAssets": "passed",
+    "sourceReferences": 22,
+    "desktopBrowser": "rendered; tabs, ArrowRight, source modal, Escape passed; no browser warnings/errors",
+    "mobileBrowser": "390 x 844; tabs and readiness cards passed; document width 375 CSS px (no horizontal overflow)",
+    "directFileBrowser": "not tested: browser tool policy blocks file URLs; relative assets checked statically",
+    "http": {
+      "passed": true,
+      "successfulRoutes": 27,
+      "rejectedPaths": 5,
+      "head": "200 empty body",
+      "post": "405",
+      "verifiedAtUtc": "2026-09-15T04:17:34.423Z"
+    }
+  },
+  "limitations": [
+    "No new Player build, remote CI run, platform publish, hardware performance measurement or human production rehearsal was performed.",
+    "Unity log contains licensing handshake/token diagnostics; version-specific licensing client then resolved entitlement and initialized successfully. Shutdown Curl error 42 appeared after successful project checks; processes exited 0. These are host diagnostics, not a claim of fully clean Unity logs.",
+    "The initial restricted run failed on local Unity package-manager IPC; the normal-permission retry passed.",
+    "Raw Unity reports and logs are local ignored artifacts; this summary preserves their hashes, not their full contents."
+  ],
+  "checkedSources": [
+    {
+      "path": "README.md",
+      "sha256": "b793fd3e7745abb60e64b8cb72fe8c6823edafc8ba524d3bba3d7c19a91c5fca"
+    },
+    {
+      "path": "Docs/WORKFLOW.md",
+      "sha256": "de31703ace3980a72e73f712c2502095c28b4e9c716fd20859a9121b20395e6b"
+    },
+    {
+      "path": "Docs/Production/AI-HANDOFF.md",
+      "sha256": "43a06db66a64ea13ee8033bf0cf80ada1f6cec3e3a82759f82f59be8d98e4077"
+    },
+    {
+      "path": "Docs/Production/READINESS-AUDIT.md",
+      "sha256": "e2224eaa8eb6a3c3a4882b80421e9317cedf7e38a7cea8d7ba2cf200f3a1ef61"
+    },
+    {
+      "path": "Docs/ROADMAP.md",
+      "sha256": "3000b5f90e8e3f24e7cdbd7e225b8b3056b062525f7d56b38c361292941e10d4"
+    },
+    {
+      "path": "Docs/ARCHITECTURE.md",
+      "sha256": "17e562e0f6b2d4e468b66255609784a84d4acad4317f5777722b365dcc1605c8"
+    },
+    {
+      "path": "Docs/ADR/001-presentation-gameplay-projection.md",
+      "sha256": "05a2065832642a5fa28a54cc6f1a58ae2e415f529b848a10109738dab4257c17"
+    },
+    {
+      "path": "Docs/ADR/002-versioned-data-driven-run-content.md",
+      "sha256": "502a67d60c2f39281a9ef15a40f4893e076c5c086e9bb099c9b7fad43075a80b"
+    },
+    {
+      "path": "Docs/Production/CONTENT_PIPELINE.md",
+      "sha256": "5b6d8ae23e14ee7050d0b9afc02c6bf5b303e6052065956f4d9ee776a43b3890"
+    },
+    {
+      "path": "Docs/Production/Content-Pipeline.md",
+      "sha256": "aa18508bc9aac00fb76e02ec7567e6dd6c957a948703da05648836e736b86909"
+    },
+    {
+      "path": "Content/Candidates/README.md",
+      "sha256": "0b5432df35446213710eaaff07184ec0f39cecf6afdac51ac7354e01a77d4b80"
+    },
+    {
+      "path": "Docs/RFC/008-ai-content-candidate-governance.md",
+      "sha256": "e606ec45666651bd87bd243ef6ff5f56c9b500eb69172c1bdcf6d8b382f77100"
+    },
+    {
+      "path": "Docs/RFC/012-candidate-copy-fidelity.md",
+      "sha256": "3f9272548a27893b37536b85499c1dd2c9f1c6908633c9516b0c1b75950ffbf9"
+    },
+    {
+      "path": "Tools/Workflow.ps1",
+      "sha256": "434814c92b98e5ee3919412e3787dc4041863e920ec13988430894b94930ede2"
+    },
+    {
+      "path": "Docs/Quality-Strategy.md",
+      "sha256": "3de4abc1293f2dd07eacad5f80ffd754c88948a820ac9b851860e1104173058b"
+    },
+    {
+      "path": ".github/workflows/pull-request.yml",
+      "sha256": "77e9ff79e8d7135ee08a89938dd630606a2c208c0220c383392e2a0427a317c2"
+    },
+    {
+      "path": "Docs/Release/Release-Runbook.md",
+      "sha256": "cc2cc095a98c531603e227e7e4e73335108a9b973c13b05709f2ec481139a9fa"
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "sha256": "461d295eaf9710f5e953c378ffc8d155bd071d7561e3922aca3eb9a59aa541a1"
+    },
+    {
+      "path": ".github/workflows/steam-publish.yml",
+      "sha256": "651b80ab4fb70897c8520c8ecd1ca6013b22f7ec9df07b047f207a079e7feb27"
+    },
+    {
+      "path": "Tools/Test-TaskEvidence.ps1",
+      "sha256": "716954f60b4003dd0673657abd1ef292a31916cd620b600cb2f0239e504ad73a"
+    },
+    {
+      "path": ".github/workflows/nightly.yml",
+      "sha256": "13cd14a1295cb5ec8e546771aee84f233ef45e2428cc75f236aab4cba3fed705"
+    },
+    {
+      "path": "Assets/_Game/Core/Game.Core.asmdef",
+      "sha256": "5b416faab42e8389685dc8f82a78eb21f589beef16512a761a37757c24cb1173"
+    }
+  ]
+}

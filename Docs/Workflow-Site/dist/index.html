@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Project WorkFlow 本地分析：从 AI 候选到可验证交付，梳理流程、架构、内容治理与生产就绪缺口。">
+  <title>WorkFlow / 工作流分析</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23122136'/%3E%3Cpath d='M7 9l4 14 5-10 5 10 4-14' fill='none' stroke='%2388efc0' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="report-data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到正文</a>
+<aside class="sidebar">
+  <a class="brand" href="#overview"><span class="brand-mark">W</span><span>WorkFlow<small>GAME / 工作流分析</small></span></a>
+  <div class="nav-label">本地分析报告 <span>01</span></div>
+  <nav aria-label="报告章节">
+    <a href="#overview" aria-current="location"><span>01</span>全局判断</a>
+    <a href="#pipeline"><span>02</span>交付流程</a>
+    <a href="#architecture"><span>03</span>工程与内容</a>
+    <a href="#quality"><span>04</span>质量与发行</a>
+    <a href="#readiness"><span>05</span>就绪度与缺口</a>
+    <a href="#next"><span>06</span>下一步行动</a>
+    <a href="#sources"><span>07</span>来源索引</a>
+  </nav>
+  <div class="sidebar-note"><span class="eyebrow">CURRENT STAGE</span><strong>垂直切片</strong><p>本地技术基础已建立<br>生产能力仍需真实演练</p><div class="stage-track" aria-hidden="true"><i></i><i></i><i class="current"></i><i></i><i></i><i></i></div><small>依据仓库路线图 · 阶段 2 / 0–5</small></div>
+</aside>
+<div class="workspace">
+  <header class="topbar"><span>PROJECT NOTES <b>/</b> 流程与生产能力</span><span class="snapshot">仓库快照 · 2026.09.15</span></header>
+  <main id="main">
+    <section id="overview" class="section overview">
+      <div class="section-kicker">01 / OVERVIEW <span class="pill neutral">Unity 6000.3.18f1</span></div>
+      <h1>从 AI 候选，到可验证交付<span class="title-period">。</span></h1>
+      <p class="lead">面向视觉小说、卡牌等内容驱动游戏的全栈开发工作流。<br>以隔离候选控制变更，以人工评审确认方向，以统一门禁和逐项证据完成交接。</p>
+      <div class="verdict"><span class="pill green">综合判断 · 推断</span><p><strong>工程闭环已有基础，生产闭环尚待实证。</strong>当前最有价值的推进，是完成一次由非程序作者参与的真实交接，并测量制作与返工成本。</p><button class="source-link" data-source="audit">审计依据 ↗</button></div>
+      <div class="facts-grid">
+        <div class="fact"><span>交付骨架</span><strong>7 <small>个阶段</small></strong><p>任务契约 → 逐项证据</p></div>
+        <div class="fact"><span>统一质量入口</span><strong>7 <small>道门禁</small></strong><p>本地与三类 CI 复用 check</p></div>
+        <div class="fact"><span>数据版本边界</span><strong>v7 <em>/</em> v4</strong><p>内容格式 / 安全存档</p></div>
+        <div class="fact"><span>责任边界</span><strong>人工批准</strong><p>设计 · 叙事 · 视听 · 授权</p></div>
+      </div>
+      <div class="reading-note"><span>阅读口径</span><p><b>事实</b>来自本地文件与明确记录；<b>推断</b>是基于这些材料的分析；<b>未验证</b>表示缺少足够证据。页面不自动跟踪 CI 或远端状态。</p></div>
+    </section>
+    <section id="pipeline" class="section">
+      <div class="section-heading"><div><div class="section-kicker">02 / DELIVERY LOOP</div><h2>一条交付链，七次责任交接</h2></div><span class="section-hint">选择阶段，查看输入与出口</span></div>
+      <div id="stage-tabs" class="stage-tabs" role="tablist" aria-label="七步交付流程"></div>
+      <div id="stage-panel" class="stage-panel" role="tabpanel" tabindex="0"></div>
+      <div class="return-line"><span aria-hidden="true">↶</span> 失败回到产生问题的阶段；候选变更后重新验证与审批。<button class="source-link" data-source="handoff">交接协议 ↗</button></div>
+      <details class="development-loop"><summary>日常开发如何走这条链</summary><p>仓库文档约定：从最新 main 创建 feature/* 或 fix/*，以两天内可合并的任务为单位；先完成最小端到端切片和失败路径，再扩展内容。提交前运行 check，PR 使用 Conventional Commits 标题并填写证据、影响、风险与回滚，采用 Squash Merge，保持主线可构建、可游玩。</p><button class="source-link" data-source="workflow">开发循环依据 ↗</button></details>
+    </section>
+    <section id="architecture" class="section">
+      <div class="section-heading"><div><div class="section-kicker">03 / ENGINEERING & CONTENT</div><h2>规则、数据与表现各守边界</h2></div><button class="source-link" data-source="architecture">架构原文 ↗</button></div>
+      <div class="two-column">
+        <article class="panel architecture-panel"><h3>规则可测，表现可替换</h3><p class="muted">以下是职责分层；具体编译依赖以 ADR 和程序集为准。</p>
+          <div class="layer"><span>Presentation</span><p>读取公开状态，把输入转为命令；不保存第二份领域状态。</p></div>
+          <div class="layer"><span>Gameplay</span><p>RunSession 编排叙事、地图、战斗、奖励、商店与安全存档。</p></div>
+          <div class="layer core"><span>Core</span><p>纯 C# 规则、状态机、稳定 ID 与确定性随机；不引用 Unity。</p></div>
+          <div class="support-layers"><div><strong>Foundation</strong><p>跨模块契约与稳定配置</p></div><div><strong>Infrastructure</strong><p>存档、平台、资源与场景适配</p></div></div>
+          <div class="panel-foot">ADR-001 允许表现层直接投影 Gameplay / Core 只读状态。<button class="source-link" data-source="projection">依据 ↗</button></div>
+        </article>
+        <article class="panel"><h3>两条内容管线，共同审批边界</h3>
+          <div class="content-track"><span class="track-number">A</span><div><h4>结构化内容 <span class="pill green">已有工具</span></h4><p>卡牌、敌人、路线、对白与本地化。JSON 作者源 → draft 候选 → 校验 / 模拟 → 人工批准 → 原子晋级。</p><button class="source-link" data-source="content">结构化管线 ↗</button></div></div>
+          <div class="content-track"><span class="track-number">B</span><div><h4>视听资产 <span class="pill amber">交接待演练</span></h4><p>立绘、卡面、动画与音频。记录源文件、许可、稳定 ID 和事件映射；以实机画面、实际播放和人工审阅验收。</p><button class="source-link" data-source="media">视听交接规范 ↗</button></div></div>
+          <p class="callout">JSON 候选工具不导入图像或音频。3D 场景规范只适用于使用相应资产的任务。</p>
+        </article>
+      </div>
+      <div class="principles"><article><span>01</span><h4>稳定身份</h4><p>内容通过稳定 ID 引用；存档不依赖显示名、资源路径或 Unity 实例。</p></article><article><span>02</span><h4>可复现变化</h4><p>根种子派生命名随机流，状态变化生成事件；同种子与内容版本支持诊断。</p></article><article><span>03</span><h4>明确的版本兼容</h4><p>存档 v1 → v2 → v3 → v4 逐步迁移；内容版本仍须精确匹配。<button class="source-link" data-source="data">ADR ↗</button></p></article></div>
+    </section>
+    <section id="quality" class="section">
+      <div class="section-heading"><div><div class="section-kicker">04 / QUALITY & RELEASE</div><h2>门禁检查正确性，实测证明可交付</h2></div><button class="source-link" data-source="gate">执行脚本 ↗</button></div>
+      <div class="command-strip"><span>统一入口</span><code>pwsh Tools/Workflow.ps1 check</code></div>
+      <ol class="gate-list"><li><b>仓库策略</b><span>必需文件、JSON、Git / LFS</span></li><li><b>证据工具</b><span>有效夹具与九类失败</span></li><li><b>候选保真</b><span>顶层转换与原数据保留</span></li><li><b>EditMode</b><span>规则、迁移与编辑器工具</span></li><li><b>项目校验</b><span>内容、引用和项目结构</span></li><li><b>平衡模拟</b><span>200 种子，固定策略</span></li><li><b>PlayMode</b><span>Bootstrap 关键路径</span></li></ol>
+      <div class="two-column evidence-row"><article class="panel"><div class="panel-title"><h3>最近一次本地记录</h3><span id="verification-badge" class="pill green">本次通过 · 09.15</span></div><div class="test-metrics"><div><strong>71<span>/71</span></strong><small>EditMode</small></div><div><strong>1<span>/1</span></strong><small>PlayMode</small></div><div><strong>0</strong><small>卡死 / 200 种子</small></div></div><p id="verification-note" class="muted">2026-09-15 13:13 JST：完整 Workflow 退出码 0；证据工具、候选保真、项目校验与平衡门通过。本轮未重新构建 Player 或执行远端 CI。</p><div class="balance-bar" role="img" aria-label="固定策略模拟：180 胜，20 败，0 卡死"><i></i></div><div class="bar-legend"><span>180 胜 · 90%</span><span>20 败 · 10%</span></div><p class="small-note">内容 vertical-slice.7 · 策略 greedy-v2-shop · 种子 1–200。90% 恰在工程阈值上界，不能据此推导玩家胜率或正式平衡质量。</p><button class="source-link" data-source="localcheck">本次验证记录 ↗</button></article>
+      <article class="panel release-panel"><h3>构建一次，逐级晋级</h3><div class="release-step"><span>PR / Nightly</span><p>统一 check ＋ Development Player<br><small>Nightly 制品保留 30 天</small></p></div><div class="release-step"><span>正式标签</span><p>统一 check → IL2CPP → ZIP / manifest<br><small>永久 Draft GitHub Release</small></p></div><div class="release-step"><span>Steam</span><p>下载同一制品，按环境审批晋级<br><small>internal → external → default</small></p></div><div class="release-step"><span>回滚</span><p>切换上一稳定 Build ID<br><small>不重新打包旧源码</small></p></div><p class="small-note">这是仓库声明和配置的发布路径；真实 Runner、安装、平台发布和回滚尚未核验。</p><button class="source-link" data-source="release">发布手册 ↗</button> <button class="source-link" data-source="releaseci">标签配置 ↗</button> <button class="source-link" data-source="steam">晋级配置 ↗</button></article></div>
+    </section>
+    <section id="readiness" class="section">
+      <div class="section-heading"><div><div class="section-kicker">05 / READINESS REVIEW</div><h2>已经具备什么，还缺哪一份证据</h2></div><button class="source-link" data-source="audit">就绪审计 ↗</button></div>
+      <p class="section-intro">样例可玩与生产可持续是不同的验收维度。以下按证据范围判断，不用测试数量换算完成百分比。</p>
+      <div class="table-wrap"><table><caption class="sr-only">八项工作流能力的证据与缺口</caption><thead><tr><th scope="col">能力</th><th scope="col">当前证据</th><th scope="col">仍需补齐</th><th scope="col">判断</th></tr></thead><tbody>
+      <tr><th scope="row">任务与交接</th><td>生产表单、逐 AC 协议、哈希检查和失败测试</td><td>真实负责人使用、审批真实性与任务吞吐量</td><td><span class="pill green">工具已落地</span></td></tr>
+      <tr><th scope="row">规则与运行时</th><td>确定性战斗 / 叙事、地图、商店、奖励、遗物及存档</td><td>正式设计确认、目标容量与完整系统覆盖</td><td><span class="pill green">样例闭环</span></td></tr>
+      <tr><th scope="row">结构化内容</th><td>候选隔离、双语覆盖、拓扑、模拟及晋级测试</td><td>非程序作者从创建、审批到实际集成的一次演练</td><td><span class="pill green">工具已落地</span></td></tr>
+      <tr><th scope="row">美术 / 音频</th><td>导入规范、来源要求、人工交接清单</td><td>批准方向、授权资产、导入预览与回退证据</td><td><span class="pill amber">规范待实证</span></td></tr>
+      <tr><th scope="row">QA / 性能</th><td>本地规则测试、Bootstrap 冒烟及种子模拟</td><td>真机体验、无障碍、兼容矩阵和 Profiler 捕获</td><td><span class="pill amber">覆盖有限</span></td></tr>
+      <tr><th scope="row">构建</th><td>历史审计记录 Windows Development 构建成功</td><td>干净机器构建、IL2CPP RC、安装与升级演练</td><td><span class="pill neutral">历史本地证据</span></td></tr>
+      <tr><th scope="row">协作 CI</th><td>统一 workflow 文件、GitHub 远端和个人 CODEOWNER</td><td>组织团队、Runner、Ruleset 和真实 CI 成功记录</td><td><span class="pill amber">配置未实证</span></td></tr>
+      <tr><th scope="row">发行</th><td>制品 manifest、Steam 晋级脚本和发布手册</td><td>平台身份与授权、环境审批、制品校验及回滚演练</td><td><span class="pill amber">配置未实证</span></td></tr>
+      </tbody></table></div>
+      <div class="analysis-grid"><article><span class="eyebrow">优势 / 分析推断</span><h3>把可自动判断的部分前置</h3><p>单一内容来源、确定性规则和统一 check 减少重复验证与环境漂移；哈希绑定让人工审批对应到具体版本。</p></article><article><span class="eyebrow">代价 / 分析推断</span><h3>流程需要真实的人来运行</h3><p>完整快照会增加并行编辑协调成本；审批字段无法认证身份。若缺少作者和审核人的实际参与，技术门禁无法证明产能。</p></article></div>
+    </section>
+    <section id="next" class="section">
+      <div class="section-heading"><div><div class="section-kicker">06 / NEXT MOVES</div><h2>优先验证生产，再扩大内容数量</h2></div><span class="pill neutral">建议 · 尚未执行</span></div>
+      <div class="action-list"><article><span class="action-number">01</span><div><h3>完成一个真实的结构化内容批次</h3><p>非程序作者新增一张卡、一个敌人和一个叙事分支，走完候选、独立审核、晋级、预览与回归。</p><small>出口证据：实际批准、逐 AC 结果、工时、返工次数和失败原因。</small></div><span class="owner">内容负责人 + QA</span></article><article><span class="action-number">02</span><div><h3>完成一组有授权的视听交接</h3><p>从已批准方向出发，让代表性资产进入真实画面或播放场景，并验证回退。</p><small>出口证据：源文件与许可、ID 映射、实机预览、人工验收和性能记录。</small></div><span class="owner">视听负责人 + 工程</span></article><article><span class="action-number">03</span><div><h3>验证远端协作与不可变制品链路</h3><p>配置团队、Runner、Ruleset 与发布目标，执行 CI、干净构建、安装升级和回滚演练。</p><small>出口证据：真实 CI 运行、制品哈希、环境批准与安装 / 回滚记录。</small></div><span class="owner">工程 + 发行负责人</span></article><article><span class="action-number">04</span><div><h3>用实测成本确认产品容量</h3><p>汇总单位制作成本、返工、兼容性和性能，修订角色、卡牌、敌人、叙事与时长预算。</p><small>出口证据：负责人确认的容量与性能 RFC；路线图包络不直接转为承诺。</small></div><span class="owner">制作人 + 各工种</span></article></div>
+      <div class="closing-note">本轮结论：先证明“一个真实任务可以完整交付”，再证明“更多任务可以稳定复制”。<button class="source-link" data-source="roadmap">路线图依据 ↗</button></div>
+    </section>
+    <section id="sources" class="section sources-section"><div class="section-heading"><div><div class="section-kicker">07 / SOURCE INDEX</div><h2>依据与查证入口</h2></div><span class="section-hint">摘要为转述，可打开本地原文</span></div><div id="source-list" class="source-list"></div></section>
+    <footer><span>WorkFlow / 本地分析报告</span><span>分析日期 2026-09-15 · 源码基线 <code>2b20b25</code> · 无外部资源依赖</span></footer>
+  </main>
+</div>
+<dialog id="source-dialog" aria-labelledby="source-title"><div class="dialog-heading"><span class="eyebrow">REPOSITORY SOURCE</span><button id="close-dialog" class="close-button" aria-label="关闭来源详情">×</button></div><h2 id="source-title"></h2><p id="source-path" class="source-path"></p><span class="pill neutral">原文摘要 · 转述</span><p id="source-excerpt"></p><a id="source-original" class="original-link" target="_blank" rel="noopener">打开本地原文 ↗</a></dialog>
+<noscript><div class="noscript">当前浏览器禁用了 JavaScript。正文仍可阅读；交付流程的详细步骤请查看 Docs/Production/AI-HANDOFF.md。</div></noscript>
+</body>
+</html>

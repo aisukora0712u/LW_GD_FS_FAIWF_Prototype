@@ -6,6 +6,8 @@
 
 ## 从任务到交付
 
+工作流全貌可打开 [本地分析网页](Docs/Workflow-Site/dist/index.html)，或运行 `node Tools/Preview-Workflow.mjs` 后访问本地地址。页面汇总交付流程、架构、门禁、证据边界与后续优先事项；[使用与验证说明](Docs/Workflow-Site/README.md) 记录分析范围。
+
 按 [研发工作流](Docs/WORKFLOW.md) 填写目标、非目标和验收，遵守 [AI 交接协议](Docs/Production/AI-HANDOFF.md)：权威输入 → 隔离候选 → 自动验证 → 人工评审 → 集成预览 → 回归/构建 → 证据交付。AI 可以起草、实现和检查，不能替负责人批准玩法、叙事、视听方向或授权。
 
 - 卡牌、敌人、分支事件、本地化：从 [结构化内容管线](Docs/Production/CONTENT_PIPELINE.md) 和 [候选操作指南](Content/Candidates/README.md) 开始。
